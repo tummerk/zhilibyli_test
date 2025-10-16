@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: wallet
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: "postgresql://postgres:secret@db:5432/wallet?sslmode=disable"
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres_data:

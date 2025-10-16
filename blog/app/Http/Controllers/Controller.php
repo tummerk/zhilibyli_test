@@ -27,24 +27,11 @@ abstract class Controller
         ], $code);
     }
 
-//    protected function handleServiceCall(callable $serviceCall, string $errorContext = ''): JsonResponse
-//    {
-//        try {
-//            $result = $serviceCall();
-//            return $this->success($result);
-//        } catch (ModelNotFoundException $e) {
-//            return $this->error('Post not found.', 404);
-//        } catch (Throwable $e) {
-//            Log::error("failed to {$errorContext}", ['exception' => $e]);
-//            return $this->error("Failed to {$errorContext} post", 500);
-//        }
-//    }
-
     protected function handleServiceCall(
         callable $serviceCall,
         string $errorContext = '',
         ?string $successMessage = null,
-        int $successCode = 200,
+        int $successCode = 200
     ): JsonResponse {
         try {
             $result = $serviceCall();

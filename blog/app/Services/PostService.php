@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
+use App\Contracts\Services\PostServiceInterface;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
-class PostService //инкапсулирует всю работу с бд,
+class PostService implements PostServiceInterface//инкапсулирует всю работу с бд,
                   // можно было бы конечно на таком простом проекте сделать и в самом контроллере
 {
     public function getAllPosts(): LengthAwarePaginator

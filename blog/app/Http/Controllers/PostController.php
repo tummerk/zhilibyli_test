@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Services\PostServiceInterface;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Resources\PostResource;
@@ -10,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
-    public function __construct(private PostService $postService){}
+    public function __construct(private PostServiceInterface $postService){}
 
     /**
      * Display a listing of the resource.
